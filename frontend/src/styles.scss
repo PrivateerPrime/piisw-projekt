@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import "src/variables.scss";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "light": $light,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+  "info": $info,
+);
+
+@import "bootstrap/scss/bootstrap";

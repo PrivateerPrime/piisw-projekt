@@ -1,0 +1,80 @@
+<div class="mx-auto my-5 login-container">
+  <div class="header-text">
+    <p>Log in</p>
+  </div>
+  <form [formGroup]="loginForm">
+    <div
+      *ngIf="incorrectCredentials"
+      class="border-danger validator-border mb-3"
+    >
+      <p class="text-danger validator-text">
+        Incorrect Username and/or Password.
+      </p>
+    </div>
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="input-username"
+        [ngClass]="{
+          'text-danger':
+            loginForm.get('username')?.hasError('required') &&
+            loginForm.get('username')?.pristine
+        }"
+        >Username *</label
+      >
+      <input
+        formControlName="username"
+        type="text"
+        id="input-username"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          loginForm.get('username')?.hasError('required') &&
+          loginForm.get('username')?.pristine
+        "
+        class="form-text text-danger field-required"
+      >
+        This field is required.
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="input-password"
+        [ngClass]="{
+          'text-danger':
+            loginForm.get('password')?.hasError('required') &&
+            loginForm.get('password')?.pristine
+        }"
+        >Password *</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="input-password"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.hasError('required') &&
+          loginForm.get('password')?.pristine
+        "
+        class="form-text text-danger field-required"
+      >
+        This field is required.
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        class="btn btn-primary float-end btn-login"
+        (click)="onSubmit()"
+      >
+        Log in
+      </button>
+    </div>
+  </form>
+</div>
