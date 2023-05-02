@@ -23,7 +23,7 @@ public class AuthService {
     public TokenDTO register(UserDTO userDTO) {
         User user = User.builder()
                 .username(userDTO.getUsername())
-                .role(Role.user)
+                .role(Role.USER)
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
         userService.save(user);

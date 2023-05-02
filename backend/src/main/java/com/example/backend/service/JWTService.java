@@ -14,7 +14,6 @@ import java.util.Map;
 @Service
 public class JWTService {
 
-    private final String SECRET_KEY = "6B58703273357638782F413F4428472B4B6250655368566D597133743677397A"; //TODO read from file
     public String getUsername(String token) {
         return getClaims(token).getSubject();
     }
@@ -53,6 +52,7 @@ public class JWTService {
     }
 
     private Key getSigningKey() {
+        String SECRET_KEY = "6B58703273357638782F413F4428472B4B6250655368566D597133743677397A";
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 }
