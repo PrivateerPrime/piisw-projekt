@@ -1,1 +1,71 @@
-<p>register works!</p>
+<div class="mx-auto my-5 login-container">
+  <div class="header-text">
+    <p>Register</p>
+  </div>
+  <form [formGroup]="registerForm">
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="input-username"
+        [ngClass]="{
+          'text-danger':
+            registerForm.get('username')?.hasError('required') &&
+            registerForm.get('username')?.pristine
+        }"
+        >Username *</label
+      >
+      <input
+        formControlName="username"
+        type="text"
+        id="input-username"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          registerForm.get('username')?.hasError('required') &&
+          registerForm.get('username')?.pristine
+        "
+        class="form-text text-danger field-required"
+      >
+        This field is incorrect.
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="input-password"
+        [ngClass]="{
+          'text-danger':
+            registerForm.get('password')?.hasError('required') &&
+            registerForm.get('password')?.pristine
+        }"
+        >Password *</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="input-password"
+        class="form-control"
+      />
+      <div
+        *ngIf="registerForm.get('password')?.errors"
+        class="form-text text-danger field-required"
+      >
+        This field is incorrect.
+      </div>
+    </div>
+
+    {{ registerForm.get("password")?.errors | json }}
+
+    <div>
+      <button
+        type="submit"
+        class="btn btn-primary float-end btn-login"
+        (click)="onSubmit()"
+      >
+        Log in
+      </button>
+    </div>
+  </form>
+</div>
