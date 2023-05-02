@@ -1,0 +1,98 @@
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test",
+  "token": ""
+}
+
+
+> {% client.global.set("auth_token", response.body.token);%}
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+> {% client.global.set("auth_token", response.body.token);%}
+###
+
+GET http://localhost:8080/ticket/offer
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/buy?id=2
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+> {% client.global.set("season_ticket_id", response.body.id); %}
+###
+
+GET http://localhost:8080/ticket/buy?id=7
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+> {% client.global.set("time_ticket_id", response.body.id); %}
+###
+
+GET http://localhost:8080/ticket/buy?id=8
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+> {% client.global.set("ride_ticket_id", response.body.id); %}
+###
+
+GET http://localhost:8080/ticket/user
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/activate?ticketId={{season_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/check?ticketId={{season_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/activate?ticketId={{time_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/check?ticketId={{time_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/activate?ticketId={{ride_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+GET http://localhost:8080/ticket/check?ticketId={{ride_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "conductor",
+  "password": "test"
+}
+> {% client.global.set("auth_token", response.body.token);%}
+###
+
+GET http://localhost:8080/ticket/check?ticketId={{ride_ticket_id}}&vehicleNumber=1111
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
