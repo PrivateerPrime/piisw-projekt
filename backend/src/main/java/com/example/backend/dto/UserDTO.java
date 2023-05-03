@@ -1,10 +1,6 @@
 package com.example.backend.dto;
 
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import com.example.backend.entity.Role;
 
-@Data
-public class UserDTO{
-    @NotNull private String username;
-    @NotNull private String password;
+public record UserDTO(String username, Role role){
 }

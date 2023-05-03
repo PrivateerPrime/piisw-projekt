@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dto.TokenDTO;
-import com.example.backend.dto.UserDTO;
+import com.example.backend.dto.UserCredentialsDTO;
 import com.example.backend.entity.Role;
 import com.example.backend.entity.User;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,24 +20,24 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    public TokenDTO register(UserDTO userDTO) {
+    public TokenDTO register(UserCredentialsDTO userCredentialsDTO) {
         User user = User.builder()
-                .username(userDTO.getUsername())
+                .username(userCredentialsDTO.getUsername())
                 .role(Role.USER)
-                .password(passwordEncoder.encode(userDTO.getPassword()))
+                .password(passwordEncoder.encode(userCredentialsDTO.getPassword()))
                 .build();
         userService.save(user);
         return new TokenDTO(jwtService.generateToken(user));
     }
 
-    public TokenDTO login(UserDTO userDTO) {
+    public TokenDTO login(UserCredentialsDTO userCredentialsDTO) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userDTO.getUsername(),
-                        userDTO.getPassword()
+                        userCredentialsDTO.getUsername(),
+                        userCredentialsDTO.getPassword()
                 )
         );
-        User user = userService.getUserByUsername(userDTO.getUsername())
+        User user = userService.getUserByUsername(userCredentialsDTO.getUsername())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         return new TokenDTO(jwtService.generateToken(user));
     }

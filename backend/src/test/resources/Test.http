@@ -21,6 +21,11 @@ Content-Type: application/json
 > {% client.global.set("auth_token", response.body.token);%}
 ###
 
+GET http://localhost:8080/auth/user
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+###
+
 GET http://localhost:8080/ticket/offer
 Accept: application/json
 Authorization: Bearer {{auth_token}}
