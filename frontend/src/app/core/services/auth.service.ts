@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-const AUTH_API = '/api/auth/';
+const AUTH_API = 'localhost:8080/auth/';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,21 @@ export class AuthService {
     password: string
   ): Observable<HttpResponse<any>> {
     return this.http.post(
-      AUTH_API + 'signin',
+      AUTH_API + 'login',
+      {
+        username,
+        password,
+      },
+      {
+        observe: 'response',
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
+  }
+
+  public register(username: string, password: string) {
+    return this.http.post(
+      AUTH_API + 'register',
       {
         username,
         password,

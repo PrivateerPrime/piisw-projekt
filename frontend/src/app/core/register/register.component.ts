@@ -15,7 +15,7 @@ function myValidator(): ValidatorFn {
     const password: string = control.value;
     let errors: any = {};
     if (password.length < 6) {
-      errors.passwordTooShot = true;
+      errors.passwordTooShort = true;
     } else if (password.length > 20) {
       errors.passwordTooLong = true;
     }
@@ -43,7 +43,11 @@ function myValidator(): ValidatorFn {
 export class RegisterComponent implements OnInit {
   registerForm = this.fb.group({
     username: new FormControl('', {
-      validators: [Validators.required, Validators.min(6), Validators.max(20)],
+      validators: [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20),
+      ],
     }),
     password: new FormControl('', {
       validators: [Validators.required, myValidator()],
