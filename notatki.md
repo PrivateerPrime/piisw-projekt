@@ -30,10 +30,15 @@
 # Komponenty UI:
 * Logowanie
 * Rejestracja
-* Przeglądanie oferty
+* Przeglądanie oferty (strona główna)
+  * Wyświetlanie bieltów do kupienia (z linkami do kupna)
 * Widok szczegółowy biletu do kupienia
-* Kupno biletu
-* Moje bilety
+* Koszyk (kupowanie biletu)
+* Kupno biletu (widok potwierdzający zakup - prosty mock-up)
+* Moje bilety (ikonka w prawym dolnym rogu + w navbarze)
+  * Bilety ważne (niewykorzystane, jeszcze aktualne)
+  * Bilety nieważne
 * Widok szczegółowy kupionego biletu
-* Widok zakupionych biletów (już nie ważnych)
+  * Link do aktywacji biletu
 * Sprawdzenie ważności biletu
+  * Wpisanie id biletu
