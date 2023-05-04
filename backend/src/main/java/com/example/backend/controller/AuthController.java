@@ -11,9 +11,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,14 +27,22 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO){
+    public ResponseEntity<?> register(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            List<ErrorDTO> errorList = bindingResult
+                    .getFieldErrors()
+                    .stream()
+                    .map(FieldError::getDefaultMessage)
+                    .map(ErrorDTO::new).toList();
+            return ResponseEntity.badRequest().body(errorList);
+        }
         if(userService.userExists(userCredentialsDTO.getUsername()))
             return ResponseEntity.badRequest().body(new ErrorDTO("User with this username already exists"));
         return ResponseEntity.ok(authService.register(userCredentialsDTO));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid UserCredentialsDTO userCredentialsDTO){
+    public ResponseEntity<?> login(@RequestBody UserCredentialsDTO userCredentialsDTO){
         try {
             return ResponseEntity.ok(authService.login(userCredentialsDTO));
         } catch (AuthenticationException e){
