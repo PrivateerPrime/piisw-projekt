@@ -1,6 +1,6 @@
 <div class="mx-auto my-5 login-container">
   <div class="header-text">
-    <p>Register</p>
+    <p>Sign up</p>
   </div>
   <form [formGroup]="registerForm">
     <div class="form-outline mb-4">
@@ -20,49 +20,85 @@
         id="input-username"
         class="form-control"
       />
-      <div
-        *ngIf="
-          registerForm.get('username')?.hasError('required') &&
-          registerForm.get('username')?.pristine
-        "
-        class="form-text text-danger field-required"
-      >
-        This field is incorrect.
+
+      <div>
+        <ul class="form-text text-danger field-required">
+          <li
+            [ngClass]="{
+              'text-success': !registerForm.get('username')?.errors
+            }"
+          >
+            Password should be between 6 and 20 characters
+          </li>
+        </ul>
       </div>
     </div>
 
     <div class="form-outline mb-4">
-      <label
-        class="form-label"
-        for="input-password"
-        [ngClass]="{
-          'text-danger':
-            registerForm.get('password')?.hasError('required') &&
-            registerForm.get('password')?.pristine
-        }"
-        >Password *</label
-      >
+      <label class="form-label" for="input-password">Password *</label>
       <input
         formControlName="password"
         type="password"
         id="input-password"
         class="form-control"
       />
-      <div
-        *ngIf="registerForm.get('password')?.errors"
-        class="form-text text-danger field-required"
-      >
-        This field is incorrect.
+
+      <div>
+        <ul class="form-text text-danger field-required">
+          <li
+            [ngClass]="{
+              'text-success':
+                !registerForm.get('password')?.hasError('passwordTooShort') &&
+                !registerForm.get('password')?.hasError('passwordTooLong')
+            }"
+          >
+            Password should be between 6 and 20 characters
+          </li>
+          <li
+            [ngClass]="{
+              'text-success': !registerForm
+                .get('password')
+                ?.hasError('passwordNoSmallLetters')
+            }"
+          >
+            Password should contain at least 1 lowercase letter
+          </li>
+          <li
+            [ngClass]="{
+              'text-success': !registerForm
+                .get('password')
+                ?.hasError('passwordNoCapitalLetters')
+            }"
+          >
+            Password should contain at least 1 uppercase letter
+          </li>
+          <li
+            [ngClass]="{
+              'text-success': !registerForm
+                .get('password')
+                ?.hasError('passwordNoNumbers')
+            }"
+          >
+            Password should contain at least 1 number
+          </li>
+          <li
+            [ngClass]="{
+              'text-success': !registerForm
+                .get('password')
+                ?.hasError('passwordNoSpecialCharacter')
+            }"
+          >
+            Password should contain at least 1 special character
+          </li>
+        </ul>
       </div>
     </div>
-
-    {{ registerForm.get("password")?.errors | json }}
-
     <div>
       <button
         type="submit"
         class="btn btn-primary float-end btn-login"
         (click)="onSubmit()"
+        [disabled]="registerForm.invalid"
       >
         Log in
       </button>
