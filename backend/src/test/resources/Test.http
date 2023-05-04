@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "username": "test",
-  "password": "test"
+  "password": "Test1!"
 }
 
 
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "username": "test",
-  "password": "test"
+  "password": "Test1!"
 }
 > {% client.global.set("auth_token", response.body.token);%}
 ###
