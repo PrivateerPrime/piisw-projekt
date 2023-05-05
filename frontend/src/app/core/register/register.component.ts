@@ -25,7 +25,7 @@ function myValidator(): ValidatorFn {
     if (!password.match(/[A-Z]/)) {
       errors.passwordNoCapitalLetters = true;
     }
-    if (!password.match(/[0-9]/)) {
+    if (!password.match(/\d/)) {
       errors.passwordNoNumbers = true;
     }
     if (!password.match(/[!@#$^&*\\(){}\[\]"':;<,>.?/]/)) {
@@ -54,6 +54,8 @@ export class RegisterComponent implements OnInit {
     }),
   });
 
+  successfulRegister: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -62,27 +64,25 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm.get('username')?.markAsDirty();
     this.registerForm.get('password')?.markAsDirty();
-    this.registerForm.get('password2')?.markAsDirty();
+    // this.registerForm.get('password2')?.markAsDirty();
   }
 
   onSubmit(): void {
     const username = this.registerForm.value.username;
     const password = this.registerForm.value.password;
 
-    // if (username != '' && password != '') {
-    //   this.authService.login(username!, password!).subscribe(
-    //     (resp) => {
-    //       localStorage.setItem('token', resp.body.token);
-    //       const sub: string = this.jwtService.decodeToken(resp.body.token).sub;
-    //       this.authService.sendMessage(sub);
-    //       this.router.navigate(['/']);
-    //     },
-    //     (error) => {
-    //       this.incorrectCredentials = true;
-    //       this.loginForm.controls['username'].setValue('');
-    //       this.loginForm.controls['password'].setValue('');
-    //     }
-    //   );
-    // }
+    if (this.registerForm.valid) {
+      this.authService.register(username!, password!).subscribe(
+        (resp) => {
+          this.successfulRegister = true;
+          this.registerForm.get('username')?.setValue('');
+          this.registerForm.get('password')?.setValue('');
+          // this.router.navigate(['/']);
+        },
+        (error) => {
+          window.alert(error.message);
+        }
+      );
+    }
   }
 }
