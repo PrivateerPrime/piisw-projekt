@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-const AUTH_API = 'localhost:8080/auth/';
+const AUTH_API = 'http://localhost:8080/auth/';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,7 @@ export class AuthService {
   sub: string = this.token ? this.jwtService.decodeToken(this.token).sub : '';
   private messageSource = new BehaviorSubject(this.sub);
   currentMessage$ = this.messageSource.asObservable();
+  public urlRedirect: string | undefined;
 
   sendMessage(message: string) {
     this.messageSource.next(message);

@@ -32,34 +32,22 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
-    if (username === '') {
-      this.loginForm.get('username')?.markAsPristine();
+    if (username && password) {
+      this.authService.login(username, password).subscribe(
+        (resp) => {
+          localStorage.setItem('token', resp.body.token);
+          const sub: string = this.jwtService.decodeToken(resp.body.token).sub;
+          this.authService.sendMessage(sub);
+          this.router
+            .navigateByUrl(this.authService.urlRedirect ?? '/')
+            .then(() => (this.authService.urlRedirect = undefined));
+        },
+        () => {
+          this.incorrectCredentials = true;
+          this.loginForm.controls['username'].setValue('');
+          this.loginForm.controls['password'].setValue('');
+        }
+      );
     }
-    if (password === '') {
-      this.loginForm.get('password')?.markAsPristine();
-    }
-    if (username === 'admin' && password === 'admin') {
-      this.authService.sendMessage('admin');
-      this.router.navigate(['/']);
-    } else {
-      this.incorrectCredentials = true;
-      this.loginForm.controls['username'].setValue('');
-      this.loginForm.controls['password'].setValue('');
-    }
-    // if (username != '' && password != '') {
-    //   this.authService.login(username!, password!).subscribe(
-    //     (resp) => {
-    //       localStorage.setItem('token', resp.body.token);
-    //       const sub: string = this.jwtService.decodeToken(resp.body.token).sub;
-    //       this.authService.sendMessage(sub);
-    //       this.router.navigate(['/']);
-    //     },
-    //     (error) => {
-    //       this.incorrectCredentials = true;
-    //       this.loginForm.controls['username'].setValue('');
-    //       this.loginForm.controls['password'].setValue('');
-    //     }
-    //   );
-    // }
   }
 }
