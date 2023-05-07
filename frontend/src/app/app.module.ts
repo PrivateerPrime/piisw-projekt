@@ -11,6 +11,8 @@ import { MainpageComponent } from './feature/mainpage/mainpage.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { TicketComponent } from './feature/ticket/ticket.component';
+import { NotFoundComponent } from './feature/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     MainpageComponent,
+    TicketComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
