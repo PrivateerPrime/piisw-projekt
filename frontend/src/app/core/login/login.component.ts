@@ -32,6 +32,12 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
+    if (!username) {
+      this.loginForm.get('username')?.markAsPristine();
+    }
+    if (!password) {
+      this.loginForm.get('password')?.markAsPristine();
+    }
     if (username && password) {
       this.authService.login(username, password).subscribe(
         (resp) => {
