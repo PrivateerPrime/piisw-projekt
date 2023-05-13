@@ -13,6 +13,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { TicketComponent } from './feature/ticket/ticket.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NotFoundComponent } from './feature/not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgOptimizedImage,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
