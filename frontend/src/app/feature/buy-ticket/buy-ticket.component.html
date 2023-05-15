@@ -1,5 +1,16 @@
 <app-spinner *ngIf="!ticket"></app-spinner>
 <ng-container *ngIf="ticket && successfulPurchase === undefined">
+  <div class="w-25 mx-auto mt-4">
+    <label class="form-label" for="input-tram-number"
+      >Podaj numer tramwaju</label
+    >
+    <input
+      #tramInput
+      class="form-control"
+      type="number"
+      id="input-tram-number"
+    />
+  </div>
   <div class="text-center my-5">Potwierdź kupienie biletu</div>
   <div class="text-center">
     <button (click)="confirmBuying()" class="btn btn-success">Potwierdź</button>
