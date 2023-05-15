@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
-    path: 'buy-ticket',
+    path: 'buy-ticket/:id',
     component: BuyTicketComponent,
     canActivate: [AuthGuard],
   },

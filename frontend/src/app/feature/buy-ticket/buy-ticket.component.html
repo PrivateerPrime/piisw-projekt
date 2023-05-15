@@ -1,1 +1,19 @@
-<p>buy-ticket works!</p>
+<app-spinner *ngIf="!ticket"></app-spinner>
+<ng-container *ngIf="ticket && successfulPurchase === undefined">
+  <div class="text-center my-5">Potwierdź kupienie biletu</div>
+  <div class="text-center">
+    <button (click)="confirmBuying()" class="btn btn-success">Potwierdź</button>
+    <button (click)="rejectBuying()" class="btn btn-danger">Odrzuć</button>
+  </div>
+</ng-container>
+<ng-container *ngIf="successfulPurchase === true">
+  <div class="text-center my-5">Bilet zakupiony pomyślnie</div>
+  <div class="text-center">
+    <button [routerLink]="['/']" class="btn btn-primary">
+      Wróć na stronę główną
+    </button>
+  </div>
+</ng-container>
+<ng-container *ngIf="successfulPurchase === false">
+  <div class="text-center my-5">Coś poszło nie tak</div>
+</ng-container>

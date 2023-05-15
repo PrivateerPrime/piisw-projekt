@@ -12,24 +12,29 @@
         <th scope="col">Ważność</th>
         <td *ngIf="!ticket.validityPeriod">1 przejazd</td>
         <td *ngIf="ticket.ticketType === 'TIME_TICKET'">
-          {{ ticket?.validityPeriod }} min
+          {{ ticket.validityPeriod }} min
         </td>
         <td *ngIf="ticket.ticketType === 'SEASON_TICKET'">
-          {{ ticket?.validityPeriod }} dni
+          {{ ticket.validityPeriod }} dni
         </td>
       </tr>
       <tr>
         <th scope="col">Cena</th>
-        <td>{{ ticket?.price }} zł</td>
+        <td>{{ ticket.price }} zł</td>
       </tr>
       <tr>
         <th scope="col">Ulgowy</th>
-        <td>{{ ticket?.discounted ? "Tak" : "Nie" }}</td>
+        <td>{{ ticket.discounted ? "Tak" : "Nie" }}</td>
       </tr>
       <tr>
         <th class="align-middle" scope="col">Kup</th>
         <td>
-          <button class="btn btn-primary">Przejdź do ekranu zapłaty</button>
+          <button
+            [routerLink]="['/buy-ticket', ticket.id]"
+            class="btn btn-primary"
+          >
+            Przejdź do ekranu zapłaty
+          </button>
         </td>
       </tr>
     </tbody>
