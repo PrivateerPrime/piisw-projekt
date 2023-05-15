@@ -16,6 +16,8 @@ import { NotFoundComponent } from './feature/not-found/not-found.component';
 import { NgOptimizedImage } from '@angular/common';
 import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
+import { MyTicketsComponent } from './feature/my-tickets/my-tickets.component';
+import { ValidateTicketComponent } from './feature/validate-ticket/validate-ticket.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
     NotFoundComponent,
     SpinnerComponent,
     BuyTicketComponent,
+    MyTicketsComponent,
+    ValidateTicketComponent,
   ],
   imports: [
     BrowserModule,

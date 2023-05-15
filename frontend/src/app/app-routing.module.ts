@@ -8,6 +8,8 @@ import { TicketComponent } from './feature/ticket/ticket.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
 import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { MyTicketsComponent } from './feature/my-tickets/my-tickets.component';
+import { ValidateTicketComponent } from './feature/validate-ticket/validate-ticket.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,16 @@ const routes: Routes = [
   {
     path: 'ticket/:id',
     component: TicketComponent,
+  },
+  {
+    path: 'my-tickets',
+    component: MyTicketsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'validate-tickets',
+    component: ValidateTicketComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '404',

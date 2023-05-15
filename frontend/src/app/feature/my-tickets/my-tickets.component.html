@@ -1,0 +1,24 @@
+<table class="table w-75 mx-auto">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Ticket type</th>
+      <th scope="col">Validity period</th>
+      <th scope="col">Price</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <th scope="col">{{ ticket.id }}</th>
+      <td>{{ ticket.ticketType }}</td>
+      <td>{{ ticket.validityPeriod }}</td>
+      <td>{{ ticket.price }}</td>
+      <td>{{ ticket.discounted }}</td>
+      <td>
+        <a [routerLink]="['ticket', ticket.id]">Link</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

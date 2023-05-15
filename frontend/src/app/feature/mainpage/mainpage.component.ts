@@ -17,7 +17,7 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.ticketService.getOffer().subscribe((tickets) => {
-      tickets.forEach((value) => {
+      tickets.forEach((value: Ticket) => {
         value.discounted
           ? this.discountedTickets.push(value)
           : this.normalTickets.push(value);
