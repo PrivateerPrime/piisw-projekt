@@ -1,30 +1,37 @@
-<table class="table w-75 mx-auto">
-  <tbody>
-    <tr>
-      <th scope="col">ID</th>
-      <td>{{ ticket?.id }}</td>
-    </tr>
-    <tr>
-      <th scope="col">Ticket type</th>
-      <td>{{ ticket?.ticketType }}</td>
-    </tr>
-    <tr>
-      <th scope="col">Validity period</th>
-      <td>{{ ticket?.validityPeriod }}</td>
-    </tr>
-    <tr>
-      <th scope="col">Price</th>
-      <td>{{ ticket?.price }}</td>
-    </tr>
-    <tr>
-      <th scope="col">Discount</th>
-      <td>{{ ticket?.discounted }}</td>
-    </tr>
-    <tr>
-      <th scope="col">Add to chart</th>
-      <td>
-        <button class="btn btn-primary">Dodaj do koszyka (dodać logikę)</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<app-spinner *ngIf="!ticket"></app-spinner>
+<ng-container *ngIf="ticket">
+  <table class="table w-75 mx-auto">
+    <tbody>
+      <tr>
+        <th scope="col">Typ biletu</th>
+        <td *ngIf="ticket.ticketType === 'SEASON_TICKET'">Bilet okresowy</td>
+        <td *ngIf="ticket.ticketType === 'TIME_TICKET'">Bilet czasowy</td>
+        <td *ngIf="ticket.ticketType === 'RIDE_TICKET'">Bilet jednorazowy</td>
+      </tr>
+      <tr>
+        <th scope="col">Ważność</th>
+        <td *ngIf="!ticket.validityPeriod">1 przejazd</td>
+        <td *ngIf="ticket.ticketType === 'TIME_TICKET'">
+          {{ ticket?.validityPeriod }} min
+        </td>
+        <td *ngIf="ticket.ticketType === 'SEASON_TICKET'">
+          {{ ticket?.validityPeriod }} dni
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">Cena</th>
+        <td>{{ ticket?.price }} zł</td>
+      </tr>
+      <tr>
+        <th scope="col">Ulgowy</th>
+        <td>{{ ticket?.discounted ? "Tak" : "Nie" }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle" scope="col">Kup</th>
+        <td>
+          <button class="btn btn-primary">Przejdź do ekranu zapłaty</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

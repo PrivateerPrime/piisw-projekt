@@ -1,0 +1,12 @@
+@import "bootstrap/scss/bootstrap";
+
+.main {
+  display: flex;
+  flex-flow: column;
+  height: calc(90vh - ($nav-link-height + $nav-link-padding-y * 2))
+}
+
+.spinner-size {
+  width: 3rem;
+  height: 3rem;
+}

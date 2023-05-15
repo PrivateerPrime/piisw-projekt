@@ -6,6 +6,8 @@ import { LoginGuard } from './core/guards/login.guard';
 import { RegisterComponent } from './core/register/register.component';
 import { TicketComponent } from './feature/ticket/ticket.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
+import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [LoginGuard],
+  },
+  {
+    path: 'buy-ticket',
+    component: BuyTicketComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'ticket/:id',

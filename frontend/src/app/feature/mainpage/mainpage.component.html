@@ -1,80 +1,83 @@
-<div class="container">
-  <div class="form-check form-switch my-4">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      role="switch"
-      id="flexSwitchCheckDefault"
-      (click)="changeTicketType()"
-    />
-    <label for="flexSwitchCheckDefault">Bilety ulgowe</label>
-  </div>
-  <div class="row">
-    <div *ngFor="let ticket of tickets" class="card col-3">
-      <div *ngIf="ticket.ticketType === 'RIDE_TICKET'" class="card-body">
-        <h5 class="card-title">
-          Bilet jednorazowy
-          <img
-            width="40"
-            height="40"
-            class="img-fluid float-end"
-            [ngSrc]="
-              tickets == normalTickets
-                ? 'assets/letter_N.svg'
-                : 'assets/letter_U.svg'
-            "
-            alt="Typ biletu"
-          />
-        </h5>
-        <p class="card-text">Cena: {{ ticket.price }} zł</p>
-        <p class="card-text">Ważność: 1 przejazd</p>
-        <button class="btn btn-primary">
-          <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
-        </button>
-      </div>
-      <div *ngIf="ticket.ticketType === 'TIME_TICKET'" class="card-body">
-        <h5 class="card-title">
-          Bilet czasowy
-          <img
-            width="40"
-            height="40"
-            class="img-fluid float-end"
-            [ngSrc]="
-              tickets == normalTickets
-                ? 'assets/letter_N.svg'
-                : 'assets/letter_U.svg'
-            "
-            alt="Typ biletu"
-          />
-        </h5>
-        <p class="card-text">Cena: {{ ticket.price }} zł</p>
-        <p class="card-text">Ważność: {{ ticket.validityPeriod }} min</p>
-        <button class="btn btn-primary">
-          <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
-        </button>
-      </div>
-      <div *ngIf="ticket.ticketType === 'SEASON_TICKET'" class="card-body">
-        <h5 class="card-title">
-          Bilet okresowy
-          <img
-            width="40"
-            height="40"
-            class="img-fluid float-end"
-            [ngSrc]="
-              tickets == normalTickets
-                ? 'assets/letter_N.svg'
-                : 'assets/letter_U.svg'
-            "
-            alt="Typ biletu"
-          />
-        </h5>
+<app-spinner *ngIf="loading"></app-spinner>
+<ng-container *ngIf="!loading">
+  <div class="container">
+    <div class="form-check form-switch my-4">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        (click)="changeTicketType()"
+      />
+      <label for="flexSwitchCheckDefault">Bilety ulgowe</label>
+    </div>
+    <div class="row">
+      <div *ngFor="let ticket of tickets" class="card col-3">
+        <div *ngIf="ticket.ticketType === 'RIDE_TICKET'" class="card-body">
+          <h5 class="card-title">
+            Bilet jednorazowy
+            <img
+              width="40"
+              height="40"
+              class="img-fluid float-end"
+              [ngSrc]="
+                tickets == normalTickets
+                  ? 'assets/letter_N.svg'
+                  : 'assets/letter_U.svg'
+              "
+              alt="Typ biletu"
+            />
+          </h5>
+          <p class="card-text">Cena: {{ ticket.price }} zł</p>
+          <p class="card-text">Ważność: 1 przejazd</p>
+          <button class="btn btn-primary">
+            <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
+          </button>
+        </div>
+        <div *ngIf="ticket.ticketType === 'TIME_TICKET'" class="card-body">
+          <h5 class="card-title">
+            Bilet czasowy
+            <img
+              width="40"
+              height="40"
+              class="img-fluid float-end"
+              [ngSrc]="
+                tickets == normalTickets
+                  ? 'assets/letter_N.svg'
+                  : 'assets/letter_U.svg'
+              "
+              alt="Typ biletu"
+            />
+          </h5>
+          <p class="card-text">Cena: {{ ticket.price }} zł</p>
+          <p class="card-text">Ważność: {{ ticket.validityPeriod }} min</p>
+          <button class="btn btn-primary">
+            <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
+          </button>
+        </div>
+        <div *ngIf="ticket.ticketType === 'SEASON_TICKET'" class="card-body">
+          <h5 class="card-title">
+            Bilet okresowy
+            <img
+              width="40"
+              height="40"
+              class="img-fluid float-end"
+              [ngSrc]="
+                tickets == normalTickets
+                  ? 'assets/letter_N.svg'
+                  : 'assets/letter_U.svg'
+              "
+              alt="Typ biletu"
+            />
+          </h5>
 
-        <p class="card-text">Cena: {{ ticket.price }} zł</p>
-        <p class="card-text">Ważność: {{ ticket.validityPeriod }} dni</p>
-        <button class="btn btn-primary">
-          <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
-        </button>
+          <p class="card-text">Cena: {{ ticket.price }} zł</p>
+          <p class="card-text">Ważność: {{ ticket.validityPeriod }} dni</p>
+          <button class="btn btn-primary">
+            <div [routerLink]="['ticket', ticket.id]">Kup teraz</div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>

@@ -14,6 +14,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { TicketComponent } from './feature/ticket/ticket.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
 import { NgOptimizedImage } from '@angular/common';
+import { SpinnerComponent } from './feature/spinner/spinner.component';
+import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { NgOptimizedImage } from '@angular/common';
     MainpageComponent,
     TicketComponent,
     NotFoundComponent,
+    SpinnerComponent,
+    BuyTicketComponent,
   ],
   imports: [
     BrowserModule,
