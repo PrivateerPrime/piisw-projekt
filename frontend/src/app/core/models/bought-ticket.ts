@@ -6,4 +6,4 @@ export interface BoughtTicket extends Ticket {
   ticketState: ticketState;
 }
 
-export type ticketState = 'UNUSED' | 'IN_USE';
+export type ticketState = 'UNUSED' | 'IN_USE' | 'USED';
