@@ -18,8 +18,8 @@ export class CheckTicketComponent {
   })
 
   checkTicket() {
-    let ticketId= <string>this.formGroup.value.ticketId
-    let vehicleNumber = <string>this.formGroup.value.vehicleNumber
+    let ticketId= this.formGroup.value.ticketId!
+    let vehicleNumber = this.formGroup.value.vehicleNumber!
     this.ticketService.checkTicket(ticketId, vehicleNumber).subscribe({
       next: value => this.router.navigate(['checked-ticket'], {state: value}),
       error: _ => this.router.navigate(['checked-ticket'], {state: {isValid: false}})
