@@ -2,8 +2,8 @@ export interface Ticket {
   id: number;
   price: number;
   validityPeriod: number | null;
-  ticketType: validityType;
+  ticketType: ticketType;
   discounted: boolean;
 }
 
-export type validityType = 'RIDE_TICKET' | 'SEASON_TICKET' | 'TIME_TICKET';
+export type ticketType = 'RIDE_TICKET' | 'SEASON_TICKET' | 'TIME_TICKET';

@@ -10,6 +10,8 @@ import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { MyTicketsComponent } from './feature/my-tickets/my-tickets.component';
 import { ValidateTicketComponent } from './feature/validate-ticket/validate-ticket.component';
+import {CheckedTicketComponent} from "./feature/checked-ticket/checked-ticket.component";
+import {CheckTicketComponent} from "./feature/check-ticket/check-ticket.component";
 
 const routes: Routes = [
   {
@@ -44,6 +46,16 @@ const routes: Routes = [
     path: 'validate-tickets',
     component: ValidateTicketComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'check-ticket',
+    component: CheckTicketComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'checked-ticket',
+    component: CheckedTicketComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '404',

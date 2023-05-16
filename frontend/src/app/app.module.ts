@@ -18,6 +18,8 @@ import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { BuyTicketComponent } from './feature/buy-ticket/buy-ticket.component';
 import { MyTicketsComponent } from './feature/my-tickets/my-tickets.component';
 import { ValidateTicketComponent } from './feature/validate-ticket/validate-ticket.component';
+import { CheckedTicketComponent } from './feature/checked-ticket/checked-ticket.component';
+import { CheckTicketComponent } from './feature/check-ticket/check-ticket.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { ValidateTicketComponent } from './feature/validate-ticket/validate-tick
     BuyTicketComponent,
     MyTicketsComponent,
     ValidateTicketComponent,
+    CheckedTicketComponent,
+    CheckTicketComponent
   ],
   imports: [
     BrowserModule,

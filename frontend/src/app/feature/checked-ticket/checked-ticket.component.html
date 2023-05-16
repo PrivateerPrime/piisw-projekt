@@ -1,0 +1,18 @@
+<div class="mx-auto my-5 form-container">
+  <div class="text-center">
+    <i class="bi bi-check-circle-fill" style="color: #2ea657" *ngIf="ticket?.isValid; else redX"></i>
+  </div>
+  <div *ngIf="ticket?.ticket; else noTicket">
+    <div>Rodzaj: {{mapTicketType(ticket?.ticket?.ticketType)}}</div>
+    <div>Ulga: {{ticket?.ticket?.discounted ? 'Tak' : 'Nie'}}</div>
+  </div>
+</div>
+
+
+<ng-template #redX>
+  <i class="bi bi-x-circle-fill" style="color: #e30021"></i>
+</ng-template>
+
+<ng-template #noTicket>
+  Bilet o podanym identyfikatorze nie istnieje.
+</ng-template>
