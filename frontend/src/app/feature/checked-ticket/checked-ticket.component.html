@@ -6,8 +6,8 @@
     <div>Stan biletu: {{mapTicketState[ticket?.ticket?.ticketState!]}}</div>
     <div>Rodzaj: {{mapTicketType[ticket?.ticket?.ticketType!]}}</div>
     <div>Ulga: {{ticket?.ticket?.discounted ? 'Tak' : 'Nie'}}</div>
-    <div>Data zakupu: {{ticket?.ticket?.purchaseDate}}</div>
-    <div>Numer pojazdu: {{ticket?.ticket?.vehicleNumber}}</div>
+    <div>Data zakupu: {{ticket?.ticket?.purchaseDate?.toLocaleString("pl-Pl")}}</div>
+    <div *ngIf="ticket?.ticket?.vehicleNumber">Numer pojazdu: {{ticket?.ticket?.vehicleNumber}}</div>
   </div>
 </div>
 

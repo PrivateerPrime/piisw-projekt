@@ -11,7 +11,10 @@ export class CheckedTicketComponent implements OnInit {
   ticket?: CheckedTicket
 
   ngOnInit(): void {
-    this.ticket = history.state
+    let ticket = history.state
+    if(!ticket?.ticket?.purchaseDate) return
+    ticket.ticket.purchaseDate = new Date(ticket.ticket.purchaseDate)
+    this.ticket = ticket
   }
 
   mapTicketType = {
