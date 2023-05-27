@@ -1,6 +1,6 @@
 <div class="mx-auto my-5 login-container">
   <div class="header-text">
-    <p>Log in</p>
+    <p>Logowanie</p>
   </div>
   <form [formGroup]="loginForm">
     <div
@@ -8,7 +8,7 @@
       class="border-danger validator-border mb-3"
     >
       <p class="text-danger validator-text">
-        Incorrect Username and/or Password.
+        Zła nazwa użytkownika i/lub hasło
       </p>
     </div>
     <div class="form-outline mb-4">
@@ -20,7 +20,7 @@
             loginForm.get('username')?.hasError('required') &&
             loginForm.get('username')?.pristine
         }"
-        >Username *</label
+        >Login *</label
       >
       <input
         formControlName="username"
@@ -35,7 +35,7 @@
         "
         class="form-text text-danger field-required"
       >
-        This field is required.
+        To pole jest wymagane
       </div>
     </div>
 
@@ -48,7 +48,7 @@
             loginForm.get('password')?.hasError('required') &&
             loginForm.get('password')?.pristine
         }"
-        >Password *</label
+        >Hasło *</label
       >
       <input
         formControlName="password"
@@ -63,7 +63,7 @@
         "
         class="form-text text-danger field-required"
       >
-        This field is required.
+        To pole jest wymagane
       </div>
     </div>
 
@@ -73,7 +73,7 @@
         class="btn btn-primary float-end btn-login"
         (click)="onSubmit()"
       >
-        Log in
+        Zaloguj
       </button>
     </div>
   </form>

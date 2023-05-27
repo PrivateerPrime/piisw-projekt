@@ -14,7 +14,7 @@
 </div>
 <div class="mx-auto my-5 login-container">
   <div class="header-text">
-    <p>Sign up</p>
+    <p>Rejestracja</p>
   </div>
   <form [formGroup]="registerForm">
     <div class="form-outline mb-4">
@@ -26,7 +26,7 @@
             registerForm.get('username')?.hasError('required') &&
             registerForm.get('username')?.pristine
         }"
-        >Username *</label
+        >Login *</label
       >
       <input
         formControlName="username"
@@ -42,21 +42,20 @@
               'text-success': !registerForm.get('username')?.errors
             }"
           >
-            Password should be between 6 and 20 characters
+            Hasło powinno mieć od 6 do 20 znaków
           </li>
         </ul>
       </div>
     </div>
 
     <div class="form-outline mb-4">
-      <label class="form-label" for="input-password">Password *</label>
+      <label class="form-label" for="input-password">Hasło *</label>
       <input
         formControlName="password"
         type="password"
         id="input-password"
         class="form-control"
       />
-
       <div>
         <ul class="form-text text-danger field-required">
           <li
@@ -66,7 +65,7 @@
                 !registerForm.get('password')?.hasError('passwordTooLong')
             }"
           >
-            Password should be between 6 and 20 characters
+            Hasło powinno mieć od 6 do 20 znaków
           </li>
           <li
             [ngClass]="{
@@ -75,7 +74,7 @@
                 ?.hasError('passwordNoSmallLetters')
             }"
           >
-            Password should contain at least 1 lowercase letter
+            Hasło powinno zawierać co najmniej 1 małą literę
           </li>
           <li
             [ngClass]="{
@@ -84,7 +83,7 @@
                 ?.hasError('passwordNoCapitalLetters')
             }"
           >
-            Password should contain at least 1 uppercase letter
+            Hasło powinno zawierać co najmniej 1 wielką literę
           </li>
           <li
             [ngClass]="{
@@ -93,7 +92,7 @@
                 ?.hasError('passwordNoNumbers')
             }"
           >
-            Password should contain at least 1 number
+            Hasło powinno zawierać co najmniej 1 cyfrę
           </li>
           <li
             [ngClass]="{
@@ -102,7 +101,7 @@
                 ?.hasError('passwordNoSpecialCharacter')
             }"
           >
-            Password should contain at least 1 special character
+            Hasło powinno zawierać co najmniej 1 znak specjalny
           </li>
         </ul>
       </div>
@@ -114,7 +113,7 @@
         (click)="onSubmit()"
         [disabled]="registerForm.invalid"
       >
-        Register
+        Zarejestruj
       </button>
     </div>
   </form>
