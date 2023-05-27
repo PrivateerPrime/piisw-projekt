@@ -2,12 +2,30 @@
   <form [formGroup]="formGroup" (ngSubmit)="checkTicket()">
     <div class="form-outline mb-4">
       <label for="ticketId" class="form-label">Identyfikator biletu</label>
-      <input id="ticketId" type="text" formControlName="ticketId" class="form-control">
+      <input
+        id="ticketId"
+        type="text"
+        formControlName="ticketId"
+        class="form-control"
+      />
     </div>
     <div class="form-outline mb-4">
-      <label for="vehicleNumber" class="form-label">Identyfikator pojazdu</label>
-      <input id="vehicleNumber" type="text" formControlName="vehicleNumber" class="form-control">
+      <label for="vehicleNumber" class="form-label"
+        >Identyfikator pojazdu</label
+      >
+      <input
+        id="vehicleNumber"
+        type="text"
+        formControlName="vehicleNumber"
+        class="form-control"
+      />
     </div>
-    <button type="submit" class="btn btn-primary float-end" [disabled]="!formGroup.valid">Submit</button>
+    <button
+      type="submit"
+      class="btn btn-primary float-end"
+      [disabled]="!formGroup.valid"
+    >
+      Sprawdź
+    </button>
   </form>
 </div>
