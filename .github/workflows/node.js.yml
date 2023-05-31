@@ -11,11 +11,10 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: dart_project
-    runs-on: ubuntu-latest
-
+        working-directory: ./frontend
     strategy:
       matrix:
         node-version: [18.x]
@@ -29,8 +28,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-      working-directory: dart_project
     - run: npm run build --if-present
-      working-directory: dart_project
     - run: npm test
-      working-directory: dart_project
