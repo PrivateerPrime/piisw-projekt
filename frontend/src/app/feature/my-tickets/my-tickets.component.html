@@ -2,22 +2,27 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Ticket type</th>
-      <th scope="col">Validity period</th>
-      <th scope="col">Price</th>
-      <th scope="col">Discount</th>
-      <th scope="col">Details</th>
+      <th scope="col">Typ biletu</th>
+      <th scope="col">Czas trwania</th>
+      <th scope="col">Cena</th>
+      <th scope="col">Data Zakupu</th>
+      <th scope="col">Numer pojazdu</th>
+      <th scope="col">Skasuj</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let ticket of tickets">
       <th scope="col">{{ ticket.id }}</th>
       <td>{{ ticket.ticketType }}</td>
-      <td>{{ ticket.validityPeriod }}</td>
+      <td>{{ ticket.validityPeriod ?? "BRAK" }}</td>
       <td>{{ ticket.price }}</td>
-      <td>{{ ticket.discounted }}</td>
-      <td>
-        <a [routerLink]="['ticket', ticket.id]">Link</a>
+      <td>{{ ticket.purchaseDate | date }}</td>
+      <td>{{ ticket.vehicleNumber ?? "BRAK" }}</td>
+      <td *ngIf="ticket.ticketState === 'UNUSED'">
+        <a [routerLink]="['/validate-tickets', ticket.id]">Link</a>
+      </td>
+      <td *ngIf="ticket.ticketState !== 'UNUSED'">
+        {{ ticket.ticketState }}
       </td>
     </tr>
   </tbody>

@@ -24,26 +24,10 @@
         </li>
         <li class="nav-item">
           <a
-            *ngIf="user === 'normalUser'"
-            [routerLink]="['validate-tickets']"
-            class="nav-link"
-            >Skasuj Bilet</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
             *ngIf="user === 'conductor'"
             [routerLink]="['check-ticket']"
             class="nav-link"
             >Sprawdź bilet</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="user === 'conductor'"
-            [routerLink]="['checked-ticket']"
-            class="nav-link"
-            >Coś jeszcze(?)</a
           >
         </li>
       </ul>

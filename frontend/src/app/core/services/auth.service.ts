@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {User} from "../models/user";
+import { User } from '../models/user';
 
 const AUTH_API = 'http://localhost:8080/auth/';
 
@@ -28,8 +28,8 @@ export class AuthService {
     return !this.jwtService.isTokenExpired(token);
   }
 
-  public getUser(): Observable<User>{
-    return this.http.get<User>(AUTH_API + 'user')
+  public getUser(): Observable<User> {
+    return this.http.get<User>(AUTH_API + 'user');
   }
 
   public login(
